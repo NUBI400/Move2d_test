@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://bct684u2skqjv"]
+
+[ext_resource type="Texture2D" uid="uid://dhgsc4ek7l5ld" path="res://assets/assests test/unnamed (1).jpg" id="1_hvbji"]
+[ext_resource type="PackedScene" uid="uid://cykne0khlo12c" path="res://cenes/player.tscn" id="2_vrtqx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0eaj"]
+size = Vector2(1295, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ulu8"]
+size = Vector2(5.25, 119)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhc7w"]
+size = Vector2(166, 66)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_13uom"]
+radius = 100.0
+
+[node name="Testes map" type="Node2D"]
+
+[node name="Unnamed(1)" type="Sprite2D" parent="."]
+self_modulate = Color(0.237539, 0.237539, 0.237539, 1)
+position = Vector2(603, 352)
+scale = Vector2(3, 3)
+texture = ExtResource("1_hvbji")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(638, 711)
+shape = SubResource("RectangleShape2D_s0eaj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(62, 645)
+shape = SubResource("RectangleShape2D_6ulu8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1185, 669)
+shape = SubResource("RectangleShape2D_vhc7w")
+
+[node name="Player" parent="." instance=ExtResource("2_vrtqx")]
+position = Vector2(652, 504)
+
+[node name="test_damage" type="Area2D" parent="."]
+position = Vector2(970, 663)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="test_damage"]
+position = Vector2(0, -57)
+shape = SubResource("CircleShape2D_13uom")
+
+[editable path="Player"]

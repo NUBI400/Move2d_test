@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnqoeiikqm2il"]
+
+[ext_resource type="Script" path="res://weapons/projectil.gd" id="1_4yu6x"]
+[ext_resource type="Script" path="res://weapons/WeaponHitbox.gd" id="2_3mvl8"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x0l3m"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 0.3
+initial_velocity_max = 15.0
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = 0.199998
+tangential_accel_max = 80.0
+
+[node name="Projectil" type="Node2D"]
+script = ExtResource("1_4yu6x")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+rotation = -1.5708
+
+[node name="Hitbox" type="Area2D" parent="Node2D/Sprite2D"]
+script = ExtResource("2_3mvl8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox"]
+disabled = true
+
+[node name="Particles" type="GPUParticles2D" parent="Node2D"]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_x0l3m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+
+[connection signal="area_entered" from="Node2D/Sprite2D/Hitbox" to="Node2D/Sprite2D/Hitbox" method="_on_Hitbox_area_entered"]
